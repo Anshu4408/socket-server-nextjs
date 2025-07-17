@@ -6,7 +6,8 @@ import mongoose from "mongoose";
 const server = http.createServer();
 const wss = new WebSocketServer({ server });
 const clients = new Map();
-
+await  mongoose.connect("mongodb+srv://Anshu45:Anshukumar8%40@cluster0.cse6amd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  
 wss.on("connection", async(ws, req) => {
   const { searchParams } = new URL(req.url, "http://localhost");
   const username = searchParams.get("username");
@@ -14,8 +15,7 @@ wss.on("connection", async(ws, req) => {
   console.log("Client connected:", username);
 
   clients.set(username, ws);
-   await  mongoose.connect("mongodb+srv://Anshu45:Anshukumar8%40@cluster0.cse6amd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-  ws.on("message", async(data) => {
+   ws.on("message", async(data) => {
 
     console.log(`Message from ${username}:`, data.toString());
 
