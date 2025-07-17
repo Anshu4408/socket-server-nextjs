@@ -16,6 +16,7 @@ wss.on("connection", async(ws, req) => {
 
   clients.set(username, ws);
    ws.on("message", async(data) => {
+     console.log(">>> Received from client:", data.toString());
 
     console.log(`Message from ${username}:`, data.toString());
 
