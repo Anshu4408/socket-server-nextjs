@@ -25,7 +25,7 @@ wss.on("connection", async(ws, req) => {
                 if (socket.readyState === 1 && (uname === username || uname === myusername)) {
                     socket.send(`${myusername}: ${data}`);
                    const update= await user.findOneAndUpdate(
-                        { username: uname },
+                        { username: username},
                         { $push: { messages:`${myusername}: ${data}`  } },
                         { new: true }
                     );
