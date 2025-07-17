@@ -6,9 +6,10 @@ import mongoose from "mongoose";
 const server = http.createServer();
 const wss = new WebSocketServer({ server });
 const clients = new Map();
-await  mongoose.connect("mongodb+srv://Anshu45:Anshukumar8%40@cluster0.cse6amd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-  
+
 wss.on("connection", async(ws, req) => {
+    await  mongoose.connect("mongodb+srv://Anshu45:Anshukumar8%40@cluster0.cse6amd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  
   const { searchParams } = new URL(req.url, "http://localhost");
   const username = searchParams.get("username");
   const myusername = searchParams.get("myusername");
