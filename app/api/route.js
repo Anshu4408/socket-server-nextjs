@@ -10,14 +10,14 @@ const clients = new Map();
 wss.on("connection", async(ws, req) => {
     await  mongoose.connect("mongodb+srv://Anshu45:Anshukumar8%40@cluster0.cse6amd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
   
-  const { searchParams } = new URL(req.url, "http://localhost");
+  const { searchParams } = new URL(req.url,  `http://${req.headers.host}`);
   const username = searchParams.get("username");
   const myusername = searchParams.get("myusername");
   console.log("Client connected:", username);
 
   clients.set(username, ws);
    ws.on("message", async(data) => {
-     console.log(">>> Received from client:", data.toString());
+     console.log(" Received from client:", data.toString());
 
     console.log(`Message from ${username}:`, data.toString());
 
